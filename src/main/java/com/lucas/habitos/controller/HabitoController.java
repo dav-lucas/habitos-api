@@ -20,14 +20,14 @@ public class HabitoController {
         return service.listarTodos();
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<Habito> buscar(@PathVariable Long id) {
-        Habito habito = service.buscarPorId(id);
-
-        if (habito != null) {
-            return ResponseEntity.ok(habito)
+        try {
+            Habito habito = service.buscarPorId(id);
+            return ResponseEntity.ok(habito);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
     }
 
 
@@ -36,9 +36,25 @@ public class HabitoController {
         return service.salvar(habito);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id){
-        service.excluir(id);
-        return ResponseEntity.noContent().build();
+        try {
+            service.excluir(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Habito> atualizar(@PathVariable Long id, @RequestBody Habito habito) {
+        try {
+            Habito atualizado = service.atualizar(id, habito);
+            return ResponseEntity.ok(atualizado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
 }

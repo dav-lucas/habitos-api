@@ -19,7 +19,8 @@ public class HabitoService {
     }
 
     public Habito buscarPorId(Long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Hábito não encontrado!"));
     }
 
     public Habito salvar(Habito habito) {
@@ -27,6 +28,20 @@ public class HabitoService {
     }
 
     public void excluir(Long id) {
-        repository.deleteById(id);
+
+       Habito habito = repository.findById(id)
+                       .orElseThrow(() -> new RuntimeException("Hábito não encontrado para exclusão!"));
+
+        repository.delete(habito);
+    }
+
+    public Habito atualizar(Long id, Habito dadosAtualizados) {
+        Habito habitoExistente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Hábito não encontrado!"));
+
+        habitoExistente.setNome(dadosAtualizados.getNome());
+        habitoExistente.setDias(dadosAtualizados.getDias());
+
+        return repository.save(habitoExistente);
     }
 }
