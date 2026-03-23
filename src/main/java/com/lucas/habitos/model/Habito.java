@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -13,9 +16,12 @@ public class Habito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @NotBlank(message = "O nome não pode estar vazio")
     private String nome;
-    private int dias;
+
+    @NotNull(message = "Os dias são obrigatórios")
+    @Min(value = 0,message = "Os dias devem ser 0 ou mais")
+    private Integer dias;
 
     public Long getId() {
         return id;

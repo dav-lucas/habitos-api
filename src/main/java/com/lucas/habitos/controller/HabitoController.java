@@ -2,6 +2,7 @@ package com.lucas.habitos.controller;
 
 import com.lucas.habitos.model.Habito;
 import com.lucas.habitos.service.HabitoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class HabitoController {
 
 
     @PostMapping
-    public Habito criar(@RequestBody Habito habito) {
+    public Habito criar(@Valid @RequestBody Habito habito) {
         return service.salvar(habito);
     }
 
@@ -47,7 +48,7 @@ public class HabitoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Habito> atualizar(@PathVariable Long id, @RequestBody Habito habito) {
+    public ResponseEntity<Habito> atualizar(@PathVariable Long id, @Valid @RequestBody Habito habito) {
         try {
             Habito atualizado = service.atualizar(id, habito);
             return ResponseEntity.ok(atualizado);
