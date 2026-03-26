@@ -5,6 +5,8 @@ import com.lucas.habitos.repository.HabitoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,4 +46,11 @@ public class HabitoService {
 
         return repository.save(habitoExistente);
     }
+
+    public Long calcularProgresso(Long id) {
+        Habito habito = buscarPorId(id);
+
+        return ChronoUnit.DAYS.between(habito.getDataInicio(), LocalDate.now());
+    }
+
 }

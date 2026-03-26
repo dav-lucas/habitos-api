@@ -58,4 +58,22 @@ public class HabitoController {
 
     }
 
+    @GetMapping("/{id}/progresso")
+    public ResponseEntity<String> verProgresso(@PathVariable Long id) {
+        try {
+            Long diasPassados = service.calcularProgresso(id);
+
+            Habito h = service.buscarPorId(id);
+
+            String mensagem = String.format(
+                    "Hábito: %s | Você está firme há %d dias! Sua meta é chegar aos %d dias.",
+                    h.getNome(), diasPassados, h.getDias()
+            );
+
+            return ResponseEntity.ok(mensagem);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
