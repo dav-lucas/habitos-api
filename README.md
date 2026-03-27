@@ -69,7 +69,7 @@ A API conta com documentação interativa completa via **Swagger**.
 
 ```bash
 # Clone o repositório
-git clone [https://github.com/dav-lucas/habitos-api.git](https://github.com/dav-lucas/habitos-api.git)
+git clone https://github.com/dav-lucas/habitos-api.git
 
 # Acesse o diretório do projeto
 cd habitos-api
