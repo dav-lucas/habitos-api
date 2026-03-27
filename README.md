@@ -58,30 +58,37 @@ A API conta com documentação interativa completa via **Swagger**.
 
 ---
 
-🚀 **Como Executar e Testar o Projeto**
+🚀 **Como Executar o Projeto**
 
-Pré-requisitos
+**Pré-requisitos**
 
 * Java 21 instalado
 * Maven instalado
 
-Passos:
+**Passos:**
 
-# 1. Clone este repositório
-git clone https://github.com/dav-lucas/habitos-api.git
+```bash
+# Clone o repositório
+git clone [https://github.com/dav-lucas/habitos-api.git](https://github.com/dav-lucas/habitos-api.git)
 
-# 2. Acesse o diretório do projeto
+# Acesse o diretório do projeto
 cd habitos-api
 
-# 3. Execute a aplicação via Maven
+# Execute a aplicação via Maven
 mvn spring-boot:run
+```
 
-# 4. Acessar a documentação interativa (Swagger) no navegador
-> http://localhost:8080/swagger-ui.html
+**Acessar a documentação da API:**
 
-# 5. Acessar o Banco de Dados (H2 Console) no navegador
-> http://localhost:8080/h2-console
-> (JDBC URL: `jdbc:h2:mem:testdb`, User: `sa`, Senha: [vazia])
+* ``http://localhost:8080/swagger-ui.html``
+
+**Acessar o Banco de Dados (H2 Console):**
+
+* **Link:** [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+* **JDBC URL:** `jdbc:h2:mem:testdb`
+* **User:** `sa`
+* **Senha:** [vazia]
+
 
 ---
 
